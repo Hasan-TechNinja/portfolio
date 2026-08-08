@@ -71,13 +71,21 @@ def contact_submit_view(request):
                     f"Subject: {contact.subject or 'No Subject'}\n\n"
                     f"Message:\n{contact.message}\n"
                 )
+                
+                from django.template.loader import render_to_string
                 try:
+                    html_message = render_to_string('emails/contact_notification.html', {
+                        'profile': profile,
+                        'contact': contact
+                    })
+                    
                     send_mail(
                         subject=subject,
                         message=message_body,
                         from_email=from_email,
                         recipient_list=[recipient],
                         fail_silently=False,
+                        html_message=html_message
                     )
                 except Exception as e:
                     print(f"Email notification error: {e}")

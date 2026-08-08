@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            background-color: #f1f5f9;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #ffffff;
+            padding: 32px 28px;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            color: #0f172a;
+        }
+
+        .header h1 span {
+            color: #0ea5e9;
+        }
+
+        .content {
+            padding: 40px 32px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #0f172a;
+        }
+
+        .info-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .info-row {
+            margin-bottom: 18px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 15px;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        .message-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .message-box {
+            background-color: #f8fafc;
+            padding: 24px;
+            font-size: 15px;
+            color: #334155;
+            white-space: pre-wrap;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 4px 12px 12px 4px;
+            line-height: 1.7;
+        }
+
+        .footer {
+            background-color: #f1f5f9;
+            padding: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 10px;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.25);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>{{ profile.name }}<span>.</span></h1>
+            </div>
+            <div class="content">
+                <div class="greeting">New Message Received</div>
+                <p>Hello <span style="color: #0f172a; font-weight: 600;">{{ profile.name }}</span>, you have received a
+                    new contact message directly from your portfolio website.</p>
+
+                <div class="info-card">
+                    <div class="info-row">
+                        <span class="info-label">Sender Name</span>
+                        <span class="info-value">{{ contact.name }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Email Address</span>
+                        <span class="info-value">
+                            <a href="mailto:{{ contact.email }}"
+                                style="color: #0ea5e9; text-decoration: none; font-weight: 600;">{{ contact.email }}</a>
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Subject</span>
+                        <span class="info-value" style="color: #10b981;">{{ contact.subject|default:"No Subject Provided" }}</span>
+                    </div>
+                </div>
+
+                <span class="message-label">Message Content:</span>
+                <div class="message-box">{{ contact.message }}</div>
+
+                <div style="text-align: center;">
+                    <a href="mailto:{{ contact.email }}" class="btn" style="color: #ffffff !important;">Reply to {{ contact.name }}</a>
+                </div>
+            </div>
+            <div class="footer">
+                &copy; {% now "Y" %} {{ profile.name }} Portfolio. Designed & Automated for you.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
