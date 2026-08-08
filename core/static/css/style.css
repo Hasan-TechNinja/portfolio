@@ -42,6 +42,7 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -1265,15 +1266,15 @@ a {
     }
 
     /* Prevent the two floating stat badges from overlapping the avatar.
-       Grid (not flex) is used here so the avatar's own width/height are
-       never overridden — flex 0 0 100% previously stretched its width
-       while height stayed fixed, distorting the circle into an oval. */
+       Grid is used here with 1fr 1fr to ensure the badges evenly split
+       the available width, preventing horizontal overflow on small screens. */
     .hero-image-wrapper {
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: 1fr 1fr;
         justify-content: center;
         align-items: start;
-        gap: 14px;
+        gap: 12px;
+        width: 100%;
     }
 
     .avatar-circle-lg {
@@ -1283,10 +1284,13 @@ a {
 
     .floating-badge {
         position: static;
-        flex-direction: row;
-        align-items: baseline;
-        gap: 8px;
-        padding: 10px 18px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 4px;
+        padding: 12px 8px;
+        width: 100%;
     }
 
     .skills-grid,
