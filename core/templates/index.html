@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.name }} | {{ profile.tagline }}</title>
+    <meta name="description" content="{{ profile.bio }}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Background Glow Orbs -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky-header" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-brand">
+                <div class="avatar-circle-sm">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
+                    {% else %}
+                        <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
+                    {% endif %}
+                </div>
+                <span class="brand-name">{{ profile.name }}<span class="dot">.</span></span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#skills" class="nav-link">Skill</a>
+                <a href="#projects" class="nav-link">Project</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-sm btn-primary">Hire Me</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#skills" class="mobile-nav-link">Skill</a>
+            <a href="#projects" class="mobile-nav-link">Project</a>
+            <a href="#experience" class="mobile-nav-link">Experience</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+            <a href="{% url 'core:download_cv' %}" class="btn btn-outline width-full">
+                <i class="fa-solid fa-download"></i> Download CV
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero / About Section -->
+        <section class="hero-section" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <span class="status-dot"></span> Available for New Opportunities
+                    </div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">{{ profile.name }}</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        <span id="typed-text">{{ profile.tagline }}</span>
+                    </h2>
+                    <p class="hero-bio">
+                        {{ profile.bio }}
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-lg btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i> Contact Me
+                        </a>
+                        <a href="{% url 'core:download_cv' %}" class="btn btn-lg btn-outline" target="_blank">
+                            <i class="fa-solid fa-download"></i> Download CV
+                        </a>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="social-strip">
+                        {% if profile.github_url %}
+                        <a href="{{ profile.github_url }}" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        {% endif %}
+                        {% if profile.linkedin_url %}
+                        <a href="{{ profile.linkedin_url }}" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        {% endif %}
+                        {% if profile.twitter_url %}
+                        <a href="{{ profile.twitter_url }}" target="_blank" class="social-icon" aria-label="Twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        {% endif %}
+                        <a href="mailto:{{ profile.email }}" class="social-icon" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Circular Image Card -->
+                <div class="hero-image-wrapper">
+                    <div class="avatar-circle-lg">
+                        <div class="glow-ring"></div>
+                        {% if profile.avatar %}
+                            <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
+                        {% else %}
+                            <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
+                        {% endif %}
+                    </div>
+                    <!-- Floating Stat Badges -->
+                    <div class="floating-badge badge-top-right">
+                        <span class="badge-num">{{ profile.years_of_experience }}+</span>
+                        <span class="badge-lbl">Years Exp.</span>
+                    </div>
+                    <div class="floating-badge badge-bottom-left">
+                        <span class="badge-num">{{ profile.projects_completed }}+</span>
+                        <span class="badge-lbl">Projects Built</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section-padding" id="skills">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-badge">Tech Stack</span>
+                    <h2 class="section-title">Skills & Expertise</h2>
+                    <p class="section-desc">Category-wise breakdown of technical proficiencies, tools, and databases.</p>
+                </div>
+
+                <div class="skills-grid">
+                    {% for cat in skill_categories %}
+                    <div class="skill-category-card">
+                        <h3 class="category-title">
+                            <i class="fa-solid fa-layer-group"></i> {{ cat.name }}
+                        </h3>
+                        <div class="skill-items-list">
+                            {% for skill in cat.skills.all %}
+                            <div class="skill-item">
+                                <div class="skill-head">
+                                    <div class="skill-info">
+                                        <div class="skill-logo">
+                                            {% if skill.icon_url %}
+                                                <img src="{{ skill.icon_url }}" alt="{{ skill.name }}">
+                                            {% elif skill.icon_class %}
+                                                <i class="{{ skill.icon_class }}"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-code"></i>
+                                            {% endif %}
+                                        </div>
+                                        <span class="skill-name">{{ skill.name }}</span>
+                                    </div>
+                                    <span class="skill-perc">{{ skill.proficiency }}%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: {{ skill.proficiency }}%;"></div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section-padding alt-bg" id="projects">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-badge">Portfolio</span>
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-desc">Explore recent software solutions, fullstack web apps, and system APIs.</p>
+                </div>
+
+                <!-- Category Filter Tabs -->
+                <div class="filter-tabs">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    {% for cat in project_categories %}
+                    <button class="filter-btn" data-filter="{{ cat.slug }}">{{ cat.name }}</button>
+                    {% endfor %}
+                </div>
+
+                <!-- Project Grid -->
+                <div class="projects-grid">
+                    {% for project in projects %}
+                    <div class="project-card" data-category="{{ project.category.slug }}">
+                        <div class="project-image-box">
+                            {% if project.image %}
+                                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            {% else %}
+                                <img src="{{ project.image_url }}" alt="{{ project.title }}">
+                            {% endif %}
+                            <div class="project-overlay">
+                                <div class="overlay-actions">
+                                    {% if project.live_url %}
+                                    <a href="{{ project.live_url }}" target="_blank" class="overlay-btn" title="Live Preview">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    {% endif %}
+                                    {% if project.github_url %}
+                                    <a href="{{ project.github_url }}" target="_blank" class="overlay-btn" title="View Source Code">
+                                        <i class="fa-brands fa-github"></i>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <span class="category-badge">{{ project.category.name }}</span>
+                        </div>
+
+                        <div class="project-content">
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <p class="project-desc">{{ project.short_description }}</p>
+                            
+                            <div class="tech-tags">
+                                {% for tag in project.tech_stack.split %}
+                                <span class="tag-pill">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+
+                            <div class="project-footer">
+                                {% if project.live_url %}
+                                <a href="{{ project.live_url }}" target="_blank" class="link-btn">
+                                    Live Demo <i class="fa-solid fa-chevron-right"></i>
+                                </a>
+                                {% endif %}
+                                {% if project.github_url %}
+                                <a href="{{ project.github_url }}" target="_blank" class="link-btn muted">
+                                    <i class="fa-brands fa-github"></i> GitHub
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="section-padding" id="experience">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-badge">Career</span>
+                    <h2 class="section-title">Work Experience</h2>
+                    <p class="section-desc">My professional trajectory in software development and engineering teams.</p>
+                </div>
+
+                <div class="timeline">
+                    {% for exp in experiences %}
+                    <div class="timeline-item">
+                        <div class="timeline-dot">
+                            <i class="{{ exp.company_logo_class }}"></i>
+                        </div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3 class="role-title">{{ exp.position }}</h3>
+                                    <h4 class="company-name">{{ exp.company }}</h4>
+                                </div>
+                                <span class="period-badge">
+                                    <i class="fa-regular fa-calendar"></i> {{ exp.start_date }} - {{ exp.end_date }}
+                                </span>
+                            </div>
+
+                            <div class="location-info">
+                                <i class="fa-solid fa-location-dot"></i> {{ exp.location }}
+                            </div>
+
+                            <div class="timeline-desc">
+                                {{ exp.description|linebreaks }}
+                            </div>
+
+                            {% if exp.technologies %}
+                            <div class="tech-tags mt-1">
+                                {% for tag in exp.technologies.split %}
+                                <span class="tag-pill accent">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-padding alt-bg" id="contact">
+            <div class="container">
+                <div class="section-header center">
+                    <span class="section-badge">Get In Touch</span>
+                    <h2 class="section-title">Let's Build Something Great</h2>
+                    <p class="section-desc">Have a project idea, job opportunity, or inquiry? Send a message directly.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Information Cards -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email Me</h4>
+                                <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Call / WhatsApp</h4>
+                                <span>{{ profile.phone }}</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <span>{{ profile.location }}</span>
+                            </div>
+                        </div>
+
+                        <div class="social-connect">
+                            <h4>Connect Online</h4>
+                            <div class="social-strip">
+                                {% if profile.github_url %}
+                                <a href="{{ profile.github_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                                {% endif %}
+                                {% if profile.linkedin_url %}
+                                <a href="{{ profile.linkedin_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                                {% endif %}
+                                {% if profile.twitter_url %}
+                                <a href="{{ profile.twitter_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive AJAX Contact Form -->
+                    <div class="contact-form-container glass-card">
+                        <form id="contact-form" action="{% url 'core:contact_submit' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="contact-name">Name <span class="required">*</span></label>
+                                {{ form.name }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-email">Email Address <span class="required">*</span></label>
+                                {{ form.email }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                {{ form.subject }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message">Message <span class="required">*</span></label>
+                                {{ form.message }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary width-full" id="submit-btn">
+                                <span>Send Message</span> <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+
+                            <div class="form-status" id="form-status"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#home" class="nav-brand">
+                    <span class="brand-name">{{ profile.name }}<span class="dot">.</span></span>
+                </a>
+                <p>{{ profile.tagline }}</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 {{ profile.name }}. All rights reserved.</p>
+                <a href="#home" class="back-to-top" aria-label="Back to top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
