@@ -2,6 +2,11 @@ from django.contrib import admin
 from .models import Profile, SkillCategory, Skill, ProjectCategory, Project, Experience, ContactMessage
 
 
+admin.site.site_header = "Portfolio Admin"
+admin.site.site_title = "Portfolio Admin"
+admin.site.index_title = "Welcome to Portfolio Admin"
+
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'tagline', 'email', 'location', 'years_of_experience')
