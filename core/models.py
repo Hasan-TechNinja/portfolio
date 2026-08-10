@@ -71,8 +71,7 @@ class ProjectCategory(models.Model):
 class Project(models.Model):
     category = models.ForeignKey(ProjectCategory, on_delete=models.CASCADE, related_name='projects')
     title = models.CharField(max_length=200)
-    short_description = models.CharField(max_length=300)
-    full_description = models.TextField(blank=True)
+    description = models.TextField()
     image = models.ImageField(upload_to='projects/', blank=True, null=True)
     image_url = models.CharField(max_length=500, blank=True)
     live_url = models.URLField(blank=True)

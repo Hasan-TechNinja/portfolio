@@ -118,8 +118,7 @@ class Command(BaseCommand):
         projects_list = [
             {
                 "title": "Enterprise Cloud SaaS Platform",
-                "short_description": "Full-stack enterprise asset and workflow management dashboard with real-time telemetry and RBAC.",
-                "full_description": "Built using Django, PostgreSQL, React, and Redis. Features include sub-second dashboard analytics, automated reporting PDF generation, live WebSocket notifications, and multi-tenant authentication.",
+                \"description\": "Full-stack enterprise asset and workflow management dashboard with real-time telemetry and RBAC.",
                 "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
                 "category": cat_map["fullstack"],
                 "live_url": "https://demo.example.com/saas",
@@ -129,8 +128,7 @@ class Command(BaseCommand):
             },
             {
                 "title": "AI Knowledge Base & Semantic Search API",
-                "short_description": "High-speed vector similarity engine and RAG backend with FastAPI and PostgreSQL pgvector.",
-                "full_description": "Developed an intelligent search engine that ingests multi-format documentation and provides contextual Q&A endpoints with sub-100ms latency.",
+                \"description\": "High-speed vector similarity engine and RAG backend with FastAPI and PostgreSQL pgvector.",
                 "image_url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
                 "category": cat_map["ai-cloud"],
                 "live_url": "https://demo.example.com/ai-search",
@@ -140,8 +138,7 @@ class Command(BaseCommand):
             },
             {
                 "title": "Distributed Financial Gateway & Ledger",
-                "short_description": "Secure payment orchestration and transaction ledger service handling micro-deposits.",
-                "full_description": "Backend API service built with Django REST Framework and PostgreSQL, enforcing strict ACID compliance, idempotency keys, and automated audit trails.",
+                \"description\": "Secure payment orchestration and transaction ledger service handling micro-deposits.",
                 "image_url": "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop",
                 "category": cat_map["backend"],
                 "live_url": "https://demo.example.com/finance",
@@ -151,8 +148,7 @@ class Command(BaseCommand):
             },
             {
                 "title": "Modern Interactive Portfolio Engine",
-                "short_description": "Ultra-responsive, dark-themed developer portfolio template with dynamic admin CMS.",
-                "full_description": "Custom full-stack portfolio solution featuring real-time category filter tabs, glassmorphic UI elements, AJAX contact workflow, and automated CV download handler.",
+                \"description\": "Ultra-responsive, dark-themed developer portfolio template with dynamic admin CMS.",
                 "image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
                 "category": cat_map["frontend"],
                 "live_url": "https://demo.example.com/portfolio",
@@ -162,8 +158,7 @@ class Command(BaseCommand):
             },
             {
                 "title": "E-Commerce Micro-Storefront",
-                "short_description": "Lightning fast digital store with cart drawer, checkout workflow, and inventory synchronization.",
-                "full_description": "Designed for fast loading speeds, seamless mobile layout, and zero third-party dynamic script bloat.",
+                \"description\": "Lightning fast digital store with cart drawer, checkout workflow, and inventory synchronization.",
                 "image_url": "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop",
                 "category": cat_map["fullstack"],
                 "live_url": "https://demo.example.com/storefront",

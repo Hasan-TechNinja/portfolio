@@ -134,4 +134,86 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // 5. Project Modal
+    const projectModal = document.getElementById('projectModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    
+    if (projectModal && modalCloseBtn) {
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalImage = document.getElementById('modalImage');
+        const modalTech = document.getElementById('modalTech');
+        const modalActions = document.getElementById('modalActions');
+        
+        const openModalBtns = document.querySelectorAll('.view-details-btn');
+        
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = e.target.closest('.project-card');
+                if (!card) return;
+                
+                const pTitle = card.querySelector('.pd-title').innerHTML;
+                const pDesc = card.querySelector('.pd-desc').innerHTML;
+                const pCat = card.querySelector('.pd-category').innerHTML;
+                const pImg = card.querySelector('.pd-image').innerHTML;
+                const pLive = card.querySelector('.pd-live').innerHTML;
+                const pGit = card.querySelector('.pd-github').innerHTML;
+                const pTech = card.querySelector('.pd-tech').innerHTML;
+                
+                modalTitle.innerHTML = pTitle;
+                modalDesc.innerHTML = pDesc;
+                modalCategory.innerHTML = pCat;
+                modalImage.src = pImg;
+                
+                // Build Tech Tags
+                modalTech.innerHTML = '';
+                if (pTech.trim()) {
+                    const tags = pTech.trim().split(/\s+/);
+                    tags.forEach(t => {
+                        const span = document.createElement('span');
+                        span.className = 'tag-pill';
+                        span.textContent = t;
+                        modalTech.appendChild(span);
+                    });
+                }
+                
+                // Build Actions
+                modalActions.innerHTML = '';
+                if (pLive.trim()) {
+                    const aLive = document.createElement('a');
+                    aLive.href = pLive;
+                    aLive.target = '_blank';
+                    aLive.className = 'btn btn-primary';
+                    aLive.innerHTML = 'Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i>';
+                    modalActions.appendChild(aLive);
+                }
+                if (pGit.trim()) {
+                    const aGit = document.createElement('a');
+                    aGit.href = pGit;
+                    aGit.target = '_blank';
+                    aGit.className = 'btn btn-outline';
+                    aGit.innerHTML = '<i class="fa-brands fa-github"></i> Source Code';
+                    modalActions.appendChild(aGit);
+                }
+                
+                // Show modal
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+                projectModal.classList.add('active');
+            });
+        });
+        
+        const closeModal = () => {
+            projectModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+        
+        modalCloseBtn.addEventListener('click', closeModal);
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeModal();
+            }
+        });
+    }
 });

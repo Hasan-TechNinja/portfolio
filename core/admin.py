@@ -36,7 +36,7 @@ class SkillAdmin(admin.ModelAdmin):
 class ProjectInline(admin.StackedInline):
     model = Project
     extra = 1
-    fields = ('title', 'short_description', 'tech_stack', 'live_url', 'github_url', 'featured', 'order')
+    fields = ('title', 'description', 'tech_stack', 'live_url', 'github_url', 'featured', 'order')
 
 
 @admin.register(ProjectCategory)
@@ -52,7 +52,7 @@ class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'featured', 'order', 'created_at')
     list_filter = ('category', 'featured')
     list_editable = ('featured', 'order')
-    search_fields = ('title', 'short_description', 'tech_stack')
+    search_fields = ('title', 'description', 'tech_stack')
 
 
 @admin.register(Experience)

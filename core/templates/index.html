@@ -208,24 +208,26 @@
                 <div class="projects-grid">
                     {% for project in projects %}
                     <div class="project-card" data-category="{{ project.category.slug }}">
+                        <!-- Hidden data for JS modal -->
+                        <div class="project-data" style="display: none;">
+                            <div class="pd-title">{{ project.title }}</div>
+                            <div class="pd-desc">{{ project.description|linebreaks }}</div>
+                            <div class="pd-category">{{ project.category.name }}</div>
+                            <div class="pd-image">{% if project.image %}{{ project.image.url }}{% else %}{{ project.image_url }}{% endif %}</div>
+                            <div class="pd-live">{{ project.live_url }}</div>
+                            <div class="pd-github">{{ project.github_url }}</div>
+                            <div class="pd-tech">{{ project.tech_stack }}</div>
+                        </div>
+
                         <div class="project-image-box">
                             {% if project.image %}
                                 <img src="{{ project.image.url }}" alt="{{ project.title }}">
                             {% else %}
                                 <img src="{{ project.image_url }}" alt="{{ project.title }}">
                             {% endif %}
-                            <div class="project-overlay">
-                                <div class="overlay-actions">
-                                    {% if project.live_url %}
-                                    <a href="{{ project.live_url }}" target="_blank" class="overlay-btn" title="Live Preview">
-                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                    </a>
-                                    {% endif %}
-                                    {% if project.github_url %}
-                                    <a href="{{ project.github_url }}" target="_blank" class="overlay-btn" title="View Source Code">
-                                        <i class="fa-brands fa-github"></i>
-                                    </a>
-                                    {% endif %}
+                            <div class="project-overlay view-details-btn" style="cursor: pointer;">
+                                <div class="overlay-actions" style="pointer-events: none;">
+                                    <span class="overlay-btn-text">View Details</span>
                                 </div>
                             </div>
                             <span class="category-badge">{{ project.category.name }}</span>
@@ -233,7 +235,7 @@
 
                         <div class="project-content">
                             <h3 class="project-title">{{ project.title }}</h3>
-                            <p class="project-desc">{{ project.short_description }}</p>
+                            <p class="project-desc">{{ project.description|truncatechars:120 }}</p>
                             
                             <div class="tech-tags">
                                 {% for tag in project.tech_stack.split %}
@@ -242,9 +244,12 @@
                             </div>
 
                             <div class="project-footer">
+                                <a href="javascript:void(0)" class="link-btn view-details-btn">
+                                    View Details <i class="fa-solid fa-arrow-right"></i>
+                                </a>
                                 {% if project.live_url %}
-                                <a href="{{ project.live_url }}" target="_blank" class="link-btn">
-                                    Live Demo <i class="fa-solid fa-chevron-right"></i>
+                                <a href="{{ project.live_url }}" target="_blank" class="link-btn live-pulse-btn">
+                                    <span class="pulse-dot"></span> Live
                                 </a>
                                 {% endif %}
                                 {% if project.github_url %}
@@ -401,6 +406,31 @@
             </div>
         </section>
     </main>
+
+    <!-- Project Details Modal -->
+    <div class="project-modal-overlay" id="projectModal">
+        <div class="project-modal">
+            <button class="modal-close" id="modalCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-content-wrap">
+                <div class="modal-image-wrapper">
+                    <img id="modalImage" src="" alt="Project Image">
+                    <span class="category-badge" id="modalCategory">Category</span>
+                </div>
+                <div class="modal-body">
+                    <h2 class="modal-title" id="modalTitle">Project Title</h2>
+                    <div class="tech-tags" id="modalTech">
+                        <!-- Tech tags will be injected here -->
+                    </div>
+                    <div class="modal-desc" id="modalDesc">
+                        <!-- Description will be injected here -->
+                    </div>
+                    <div class="modal-actions" id="modalActions">
+                        <!-- Action buttons will be injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

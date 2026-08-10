@@ -730,6 +730,28 @@ a {
     transform: scale(1.15);
 }
 
+.overlay-btn-text {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background: var(--primary-cyan);
+    color: #07090e;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.overlay-btn-text:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+}
+
 .category-badge {
     position: absolute;
     top: 14px;
@@ -811,6 +833,146 @@ a {
 
 .link-btn:hover {
     color: var(--text-main);
+}
+
+.live-pulse-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(239, 68, 68, 0.7);
+    animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Project Modal */
+.project-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 9, 14, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+}
+
+.project-modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.project-modal {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 92%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform var(--transition-smooth);
+}
+
+.project-modal-overlay.active .project-modal {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(7, 9, 14, 0.7);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--primary-cyan);
+    color: #07090e;
+    transform: scale(1.1);
+}
+
+.modal-content-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.modal-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-image-wrapper .category-badge {
+    top: 20px;
+    left: 20px;
+    right: auto;
+}
+
+.modal-body {
+    padding: 30px 40px;
+}
+
+.modal-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.modal-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-top: 24px;
+    margin-bottom: 30px;
+}
+
+.modal-desc p {
+    margin-bottom: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
 }
 
 /* Timeline / Work Experience */
@@ -1437,7 +1599,7 @@ a {
     .footer { background: #e2e8f0; }
     .form-input { background: rgba(255, 255, 255, 0.9); }
     
-    .btn-primary, .overlay-btn, .social-icon:hover { color: #ffffff; }
+    .btn-primary, .overlay-btn, .overlay-btn-text, .social-icon:hover { color: #ffffff; }
     .btn-primary { box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3); }
     .btn-primary:hover { box-shadow: 0 8px 30px rgba(2, 132, 199, 0.45); }
     
@@ -1452,4 +1614,8 @@ a {
         background: rgba(5, 150, 105, 0.1);
         border-color: rgba(5, 150, 105, 0.3);
     }
+    
+    .project-modal-overlay { background: rgba(248, 250, 252, 0.95); }
+    .project-modal { background: var(--bg-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+    .modal-close { background: rgba(255, 255, 255, 0.8); border-color: rgba(0,0,0,0.1); }
 }
