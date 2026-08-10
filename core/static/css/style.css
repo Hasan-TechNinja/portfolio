@@ -1240,6 +1240,26 @@ a {
         font-size: 1.1rem;
         max-width: 140px;
     }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.05rem;
+    }
+    
+    .hero-bio {
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .section-desc {
+        font-size: 0.85rem;
+    }
 
     .avatar-circle-sm {
         width: 38px;
@@ -1315,6 +1335,30 @@ a {
     .timeline-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+    
+    .role-title {
+        font-size: 1.15rem;
+    }
+
+    .company-name {
+        font-size: 0.95rem;
+    }
+
+    .timeline-desc p {
+        font-size: 0.85rem;
+    }
+    
+    .project-title {
+        font-size: 1.15rem;
+    }
+    
+    .project-desc {
+        font-size: 0.85rem;
+    }
+
+    .skill-name {
+        font-size: 0.85rem;
     }
 
     .footer-links {
