@@ -12,10 +12,17 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('name', 'tagline', 'email', 'location', 'years_of_experience')
 
 
+class SkillInline(admin.TabularInline):
+    model = Skill
+    extra = 1
+    fields = ('name', 'proficiency', 'icon_class', 'icon_url', 'is_featured', 'order')
+
+
 @admin.register(SkillCategory)
 class SkillCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'order')
     list_editable = ('order',)
+    inlines = [SkillInline]
 
 
 @admin.register(Skill)
@@ -26,11 +33,18 @@ class SkillAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+class ProjectInline(admin.StackedInline):
+    model = Project
+    extra = 1
+    fields = ('title', 'short_description', 'tech_stack', 'live_url', 'github_url', 'featured', 'order')
+
+
 @admin.register(ProjectCategory)
 class ProjectCategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'order')
     prepopulated_fields = {'slug': ('name',)}
     list_editable = ('order',)
+    inlines = [ProjectInline]
 
 
 @admin.register(Project)
