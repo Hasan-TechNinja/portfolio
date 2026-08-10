@@ -1359,3 +1359,53 @@ a {
         padding: 18px;
     }
 }
+
+/* ==========================================================================
+   Light Mode Support (System Theme)
+   ========================================================================== */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-dark: #f8fafc;
+        --bg-card: #ffffff;
+        --bg-card-hover: #f1f5f9;
+        --bg-alt: #f1f5f9;
+
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --text-dim: #64748b;
+
+        --primary-cyan: #0284c7;
+        --primary-blue: #0369a1;
+        --accent-purple: #6d28d9;
+        --accent-emerald: #059669;
+
+        --border-color: rgba(0, 0, 0, 0.1);
+        --border-glow: rgba(2, 132, 199, 0.2);
+
+        --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.05);
+        --glow-effect: 0 0 25px rgba(2, 132, 199, 0.15);
+    }
+
+    .glass-card { background: rgba(255, 255, 255, 0.85); }
+    .sticky-header { background: rgba(248, 250, 252, 0.85); }
+    .floating-badge, .category-badge { background: rgba(255, 255, 255, 0.9); }
+    .project-overlay { background: rgba(248, 250, 252, 0.85); }
+    .footer { background: #e2e8f0; }
+    .form-input { background: rgba(255, 255, 255, 0.9); }
+    
+    .btn-primary, .overlay-btn, .social-icon:hover { color: #ffffff; }
+    .btn-primary { box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3); }
+    .btn-primary:hover { box-shadow: 0 8px 30px rgba(2, 132, 199, 0.45); }
+    
+    .avatar-circle-lg img { border-color: var(--bg-dark); }
+
+    .btn-outline, .social-icon, .progress-bar, .tag-pill, .period-badge {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    .btn-outline:hover { background: rgba(0, 0, 0, 0.1); }
+    .info-icon { background: rgba(2, 132, 199, 0.1); }
+    .badge-pill {
+        background: rgba(5, 150, 105, 0.1);
+        border-color: rgba(5, 150, 105, 0.3);
+    }
+}
