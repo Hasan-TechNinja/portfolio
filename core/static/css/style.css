@@ -1659,3 +1659,48 @@ a {
         border-color: rgba(0, 0, 0, 0.1);
     }
 }
+
+/* ==========================================================================
+   Interactive Trackers (Scroll & Mouse)
+   ========================================================================== */
+   
+
+/* Mouse Movement Tracker */
+#mouse-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--primary-cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9998;
+    opacity: 0;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.3s;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+}
+
+#mouse-follower-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-emerald);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 0 0 10px rgba(0, 245, 160, 0.6);
+}
+
+/* Hide custom cursor on mobile devices */
+@media (max-width: 768px) {
+    #mouse-follower, #mouse-follower-dot {
+        display: none !important;
+    }
+}

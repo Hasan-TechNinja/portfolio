@@ -216,4 +216,80 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+
+
+    // 8. Mouse Movement Tracker (Custom Cursor)
+    const mouseFollower = document.getElementById('mouse-follower');
+    const mouseFollowerDot = document.getElementById('mouse-follower-dot');
+    
+    // Check if device supports touch or is a small screen to prevent running on mobile devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(max-width: 768px)').matches;
+    
+    if (mouseFollower && mouseFollowerDot && !isTouchDevice) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
+        let hasMoved = false;
+        
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Snap to cursor on first movement
+            if (!hasMoved) {
+                followerX = mouseX;
+                followerY = mouseY;
+                hasMoved = true;
+            }
+            
+            // Move dot instantly (subtract half width/height for centering)
+            mouseFollowerDot.style.left = `${mouseX}px`;
+            mouseFollowerDot.style.top = `${mouseY}px`;
+            
+            // Show followers when mouse moves
+            mouseFollower.style.opacity = '1';
+            mouseFollowerDot.style.opacity = '1';
+        });
+
+        // Hide followers when mouse leaves window
+        document.addEventListener('mouseout', (e) => {
+            if (e.relatedTarget === null) {
+                mouseFollower.style.opacity = '0';
+                mouseFollowerDot.style.opacity = '0';
+            }
+        });
+        
+        // Add smooth following effect to the larger circle
+        function animateFollower() {
+            // Easing factor (lower is smoother/slower)
+            const easing = 0.15;
+            
+            followerX += (mouseX - followerX) * easing;
+            followerY += (mouseY - followerY) * easing;
+            
+            mouseFollower.style.left = `${followerX}px`;
+            mouseFollower.style.top = `${followerY}px`;
+            
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+        
+        // Add hover effect for links and buttons
+        const interactiveElements = document.querySelectorAll('a, button, .project-overlay, input, textarea');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                mouseFollower.style.width = '60px';
+                mouseFollower.style.height = '60px';
+                mouseFollower.style.backgroundColor = 'rgba(0, 242, 254, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                mouseFollower.style.width = '40px';
+                mouseFollower.style.height = '40px';
+                mouseFollower.style.backgroundColor = 'transparent';
+            });
+        });
+    }
 });
