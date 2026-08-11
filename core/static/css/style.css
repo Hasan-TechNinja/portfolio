@@ -158,13 +158,13 @@ a {
 }
 
 .section-title {
-    font-size: clamp(1.65rem, 5vw, 2.5rem);
+    font-size: clamp(2rem, 5vw, 2.5rem);
     margin-bottom: 16px;
 }
 
 .section-desc {
     color: var(--text-muted);
-    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.15rem);
     max-width: 650px;
     margin: 0 auto;
 }
@@ -409,21 +409,21 @@ a {
 }
 
 .hero-title {
-    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-size: clamp(2.3rem, 6vw, 3.5rem);
     letter-spacing: -0.5px;
     margin-bottom: 12px;
     word-break: break-word;
 }
 
 .hero-subtitle {
-    font-size: clamp(1.15rem, 3.6vw, 1.6rem);
+    font-size: clamp(1.25rem, 3.6vw, 1.6rem);
     color: var(--text-muted);
     font-weight: 500;
     margin-bottom: 24px;
 }
 
 .hero-bio {
-    font-size: clamp(1rem, 2.4vw, 1.15rem);
+    font-size: clamp(1.1rem, 2.4vw, 1.15rem);
     color: var(--text-muted);
     margin-bottom: 36px;
     max-width: 580px;
@@ -851,9 +851,17 @@ a {
 }
 
 @keyframes pulse-red {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-    70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
 }
 
 /* Project Modal */
@@ -1399,28 +1407,8 @@ a {
     }
 
     .brand-name {
-        font-size: 1.1rem;
-        max-width: 140px;
-    }
-    
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.05rem;
-    }
-    
-    .hero-bio {
-        font-size: 0.9rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .section-desc {
-        font-size: 0.85rem;
+        font-size: 1.25rem;
+        max-width: 160px;
     }
 
     .avatar-circle-sm {
@@ -1498,29 +1486,29 @@ a {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .role-title {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
 
     .company-name {
-        font-size: 0.95rem;
+        font-size: 1.05rem;
     }
 
     .timeline-desc p {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
     }
-    
+
     .project-title {
-        font-size: 1.15rem;
+        font-size: 1.2rem;
     }
-    
+
     .project-desc {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
     }
 
     .skill-name {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
     }
 
     .footer-links {
@@ -1592,30 +1580,82 @@ a {
         --glow-effect: 0 0 25px rgba(2, 132, 199, 0.15);
     }
 
-    .glass-card { background: rgba(255, 255, 255, 0.85); }
-    .sticky-header { background: rgba(248, 250, 252, 0.85); }
-    .floating-badge, .category-badge { background: rgba(255, 255, 255, 0.9); }
-    .project-overlay { background: rgba(248, 250, 252, 0.85); }
-    .footer { background: #e2e8f0; }
-    .form-input { background: rgba(255, 255, 255, 0.9); }
-    
-    .btn-primary, .overlay-btn, .overlay-btn-text, .social-icon:hover { color: #ffffff; }
-    .btn-primary { box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3); }
-    .btn-primary:hover { box-shadow: 0 8px 30px rgba(2, 132, 199, 0.45); }
-    
-    .avatar-circle-lg img { border-color: var(--bg-dark); }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+    }
 
-    .btn-outline, .social-icon, .progress-bar, .tag-pill, .period-badge {
+    .sticky-header {
+        background: rgba(248, 250, 252, 0.85);
+    }
+
+    .floating-badge,
+    .category-badge {
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .project-overlay {
+        background: rgba(248, 250, 252, 0.85);
+    }
+
+    .footer {
+        background: #e2e8f0;
+    }
+
+    .form-input {
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-primary,
+    .overlay-btn,
+    .overlay-btn-text,
+    .social-icon:hover {
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        box-shadow: 0 4px 20px rgba(2, 132, 199, 0.3);
+    }
+
+    .btn-primary:hover {
+        box-shadow: 0 8px 30px rgba(2, 132, 199, 0.45);
+    }
+
+    .avatar-circle-lg img {
+        border-color: var(--bg-dark);
+    }
+
+    .btn-outline,
+    .social-icon,
+    .progress-bar,
+    .tag-pill,
+    .period-badge {
         background: rgba(0, 0, 0, 0.05);
     }
-    .btn-outline:hover { background: rgba(0, 0, 0, 0.1); }
-    .info-icon { background: rgba(2, 132, 199, 0.1); }
+
+    .btn-outline:hover {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .info-icon {
+        background: rgba(2, 132, 199, 0.1);
+    }
+
     .badge-pill {
         background: rgba(5, 150, 105, 0.1);
         border-color: rgba(5, 150, 105, 0.3);
     }
-    
-    .project-modal-overlay { background: rgba(248, 250, 252, 0.95); }
-    .project-modal { background: var(--bg-card); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
-    .modal-close { background: rgba(255, 255, 255, 0.8); border-color: rgba(0,0,0,0.1); }
+
+    .project-modal-overlay {
+        background: rgba(248, 250, 252, 0.95);
+    }
+
+    .project-modal {
+        background: var(--bg-card);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-close {
+        background: rgba(255, 255, 255, 0.8);
+        border-color: rgba(0, 0, 0, 0.1);
+    }
 }
