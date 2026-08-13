@@ -1698,6 +1698,22 @@ a {
     box-shadow: 0 0 10px rgba(0, 245, 160, 0.6);
 }
 
+/* Typing Cursor Effect */
+.typing-cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background-color: var(--primary-cyan);
+    vertical-align: text-bottom;
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 /* Hide custom cursor on mobile devices */
 @media (max-width: 768px) {
     #mouse-follower, #mouse-follower-dot {

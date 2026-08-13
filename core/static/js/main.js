@@ -292,4 +292,59 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 9. Typewriter Effect for Hero Subtitle
+    const typedTextElement = document.getElementById('typed-text');
+    if (typedTextElement) {
+        const fullText = typedTextElement.getAttribute('data-typed-strings') || typedTextElement.innerText;
+        typedTextElement.innerText = ''; // Clear for typing effect
+        
+        const strings = fullText.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        
+        if (strings.length > 0) {
+            let currentStringIndex = 0;
+            let currentCharIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            let deletingSpeed = 50;
+            let delayBetweenStrings = 2000;
+            
+            let cursor = document.getElementById('typed-cursor');
+            if (!cursor) {
+                cursor = document.createElement('span');
+                cursor.id = 'typed-cursor';
+                cursor.classList.add('typing-cursor');
+                typedTextElement.parentNode.insertBefore(cursor, typedTextElement.nextSibling);
+            }
+
+            function type() {
+                const currentString = strings[currentStringIndex];
+                
+                if (isDeleting) {
+                    typedTextElement.innerText = currentString.substring(0, currentCharIndex - 1);
+                    currentCharIndex--;
+                } else {
+                    typedTextElement.innerText = currentString.substring(0, currentCharIndex + 1);
+                    currentCharIndex++;
+                }
+
+                let nextSpeed = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (!isDeleting && currentCharIndex === currentString.length) {
+                    nextSpeed = delayBetweenStrings;
+                    isDeleting = true;
+                } else if (isDeleting && currentCharIndex === 0) {
+                    isDeleting = false;
+                    currentStringIndex = (currentStringIndex + 1) % strings.length;
+                    nextSpeed = 500;
+                }
+
+                setTimeout(type, nextSpeed);
+            }
+
+            setTimeout(type, 500);
+        } else {
+            typedTextElement.innerText = fullText;
+        }
+    }
 });
