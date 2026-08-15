@@ -25,40 +25,69 @@ cd portfolio
 ```
 *(Note: Replace the URL with the actual repository URL if you have forked it).*
 
-### Step 4: Create & Activate a Virtual Environment
+### Step 4: Environment Variables Setup
+Create a `.env` file from the provided example and configure your variables:
+```bash
+cp .env.example .env
+nano .env
+```
+
+Here is the structure of the `.env.example` file that you need to fill out:
+```env
+# Database Configuration (PostgreSQL)
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+
+# Email & SMTP Configuration
+EMAIL_HOST=
+EMAIL_PORT=
+EMAIL_USE_TLS=
+EMAIL_USE_SSL=
+
+# Replace with your email address and App Password
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+DEFAULT_FROM_EMAIL=
+
+DEBUG=False
+```
+*(Save and exit the editor when you are done).*
+
+### Step 5: Create & Activate a Virtual Environment
 Create a virtual environment using Python 3.12 and activate it:
 ```bash
 python3.12 -m venv env
 source env/bin/activate
 ```
 
-### Step 5: Run the Build Script
+### Step 6: Run the Build Script
 We have included a build script that will automatically install dependencies, collect static files, and apply database migrations. Run it with:
 ```bash
 chmod +x build.sh
 ./build.sh
 ```
 
-### Step 6: Create an Admin Superuser
+### Step 7: Create an Admin Superuser
 Create an admin account to manage your portfolio content:
 ```bash
 python manage.py createsuperuser
 ```
 *(Follow the prompts to input your username, email, and password).*
 
-### Step 7: Setup the Web App in PythonAnywhere
+### Step 8: Setup the Web App in PythonAnywhere
 1. Go to the **Web** tab in PythonAnywhere.
 2. Click **Add a new web app**.
 3. Click **Next**, then select **Manual configuration (including virtualenvs)** (⚠️ Do *not* select Django).
 4. Select **Python 3.12** (to match the virtual environment we created).
 5. Click **Next** to finish creating the app.
 
-### Step 8: Configure Virtualenv & Source Code Paths
+### Step 9: Configure Virtualenv & Source Code Paths
 Still on the **Web** tab, scroll down to configure:
 1. **Source code:** Set this to `/home/yourusername/portfolio`
 2. **Virtualenv:** Set this to `/home/yourusername/portfolio/env`
 
-### Step 9: Configure the WSGI File
+### Step 10: Configure the WSGI File
 1. On the **Web** tab, scroll to the **Code** section.
 2. Click the link next to **WSGI configuration file** (it looks like `/var/www/yourusername_pythonanywhere_com_wsgi.py`).
 3. Delete everything in that file and paste the following:
@@ -83,7 +112,7 @@ application = get_wsgi_application()
 
 4. Click **Save** in the top right.
 
-### Step 10: Setup Static & Media Files
+### Step 11: Setup Static & Media Files
 Go back to the **Web** tab and scroll down to the **Static files** section. Add two entries to ensure CSS, JS, and Images load properly:
 
 1. **Static Files:**
@@ -94,7 +123,7 @@ Go back to the **Web** tab and scroll down to the **Static files** section. Add 
    - **URL:** `/media/`
    - **Directory:** `/home/yourusername/portfolio/media/`
 
-### Step 11: Reload and Go Live!
+### Step 12: Reload and Go Live!
 1. Scroll to the very top of the **Web** tab.
 2. Click the big green **Reload yourusername.pythonanywhere.com** button.
 3. Click the link above the button to visit your live portfolio!
