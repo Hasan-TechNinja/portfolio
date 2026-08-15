@@ -347,4 +347,11 @@ document.addEventListener('DOMContentLoaded', () => {
             typedTextElement.innerText = fullText;
         }
     }
+
+    // 10. Dynamic Copyright Year
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        const currentYear = new Date().getFullYear();
+        yearElement.textContent = currentYear;
+    }
 });

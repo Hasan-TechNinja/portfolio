@@ -1,23 +1,28 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ profile.name }} | {{ profile.tagline }}</title>
     <meta name="description" content="{{ profile.bio }}">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- FontAwesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     <!-- Mouse Movement Tracker -->
     <div id="mouse-follower"></div>
@@ -34,9 +39,9 @@
             <a href="#home" class="nav-brand">
                 <div class="avatar-circle-sm">
                     {% if profile.avatar %}
-                        <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
+                    <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
                     {% else %}
-                        <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
+                    <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
                     {% endif %}
                 </div>
                 <span class="brand-name">{{ profile.name }}<span class="dot">.</span></span>
@@ -128,9 +133,9 @@
                     <div class="avatar-circle-lg">
                         <div class="glow-ring"></div>
                         {% if profile.avatar %}
-                            <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
+                        <img src="{{ profile.avatar.url }}" alt="{{ profile.name }}">
                         {% else %}
-                            <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
+                        <img src="{{ profile.avatar_url }}" alt="{{ profile.name }}">
                         {% endif %}
                     </div>
                     <!-- Floating Stat Badges -->
@@ -152,7 +157,8 @@
                 <div class="section-header center">
                     <span class="section-badge">Tech Stack</span>
                     <h2 class="section-title">Skills & Expertise</h2>
-                    <p class="section-desc">Category-wise breakdown of technical proficiencies, tools, and databases.</p>
+                    <p class="section-desc">Category-wise breakdown of technical proficiencies, tools, and databases.
+                    </p>
                 </div>
 
                 <div class="skills-grid">
@@ -168,11 +174,11 @@
                                     <div class="skill-info">
                                         <div class="skill-logo">
                                             {% if skill.icon_url %}
-                                                <img src="{{ skill.icon_url }}" alt="{{ skill.name }}">
+                                            <img src="{{ skill.icon_url }}" alt="{{ skill.name }}">
                                             {% elif skill.icon_class %}
-                                                <i class="{{ skill.icon_class }}"></i>
+                                            <i class="{{ skill.icon_class }}"></i>
                                             {% else %}
-                                                <i class="fa-solid fa-code"></i>
+                                            <i class="fa-solid fa-code"></i>
                                             {% endif %}
                                         </div>
                                         <span class="skill-name">{{ skill.name }}</span>
@@ -217,7 +223,8 @@
                             <div class="pd-title">{{ project.title }}</div>
                             <div class="pd-desc">{{ project.description|linebreaks }}</div>
                             <div class="pd-category">{{ project.category.name }}</div>
-                            <div class="pd-image">{% if project.image %}{{ project.image.url }}{% else %}{{ project.image_url }}{% endif %}</div>
+                            <div class="pd-image">{% if project.image %}{{ project.image.url }}{% else %}{{
+                                project.image_url }}{% endif %}</div>
                             <div class="pd-live">{{ project.live_url }}</div>
                             <div class="pd-github">{{ project.github_url }}</div>
                             <div class="pd-tech">{{ project.tech_stack }}</div>
@@ -225,9 +232,9 @@
 
                         <div class="project-image-box">
                             {% if project.image %}
-                                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                            <img src="{{ project.image.url }}" alt="{{ project.title }}">
                             {% else %}
-                                <img src="{{ project.image_url }}" alt="{{ project.title }}">
+                            <img src="{{ project.image_url }}" alt="{{ project.title }}">
                             {% endif %}
                             <div class="project-overlay view-details-btn" style="cursor: pointer;">
                                 <div class="overlay-actions" style="pointer-events: none;">
@@ -240,7 +247,7 @@
                         <div class="project-content">
                             <h3 class="project-title">{{ project.title }}</h3>
                             <p class="project-desc">{{ project.description|truncatechars:120 }}</p>
-                            
+
                             <div class="tech-tags">
                                 {% for tag in project.tech_stack.split %}
                                 <span class="tag-pill">{{ tag }}</span>
@@ -275,7 +282,8 @@
                 <div class="section-header center">
                     <span class="section-badge">Career</span>
                     <h2 class="section-title">Work Experience</h2>
-                    <p class="section-desc">My professional trajectory in software development and engineering teams.</p>
+                    <p class="section-desc">My professional trajectory in software development and engineering teams.
+                    </p>
                 </div>
 
                 <div class="timeline">
@@ -323,7 +331,8 @@
                 <div class="section-header center">
                     <span class="section-badge">Get In Touch</span>
                     <h2 class="section-title">Let's Build Something Great</h2>
-                    <p class="section-desc">Have a project idea, job opportunity, or inquiry? Send a message directly.</p>
+                    <p class="section-desc">Have a project idea, job opportunity, or inquiry? Send a message directly.
+                    </p>
                 </div>
 
                 <div class="contact-grid">
@@ -363,13 +372,16 @@
                             <h4>Connect Online</h4>
                             <div class="social-strip">
                                 {% if profile.github_url %}
-                                <a href="{{ profile.github_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                                <a href="{{ profile.github_url }}" target="_blank" class="social-icon"><i
+                                        class="fa-brands fa-github"></i></a>
                                 {% endif %}
                                 {% if profile.linkedin_url %}
-                                <a href="{{ profile.linkedin_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="{{ profile.linkedin_url }}" target="_blank" class="social-icon"><i
+                                        class="fa-brands fa-linkedin-in"></i></a>
                                 {% endif %}
                                 {% if profile.twitter_url %}
-                                <a href="{{ profile.twitter_url }}" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="{{ profile.twitter_url }}" target="_blank" class="social-icon"><i
+                                        class="fa-brands fa-twitter"></i></a>
                                 {% endif %}
                             </div>
                         </div>
@@ -455,7 +467,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 {{ profile.name }}. All rights reserved.</p>
+                <p>&copy; <span id="current-year">2026</span> {{ profile.name }}. All rights reserved.</p>
                 <a href="#home" class="back-to-top" aria-label="Back to top">
                     <i class="fa-solid fa-arrow-up"></i>
                 </a>
@@ -466,4 +478,5 @@
     <!-- Custom JavaScript -->
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>

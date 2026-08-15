@@ -1213,6 +1213,16 @@ a {
     margin-top: 8px;
 }
 
+.footer-brand .nav-brand {
+    justify-content: center;
+}
+
+.footer-brand .brand-name {
+    max-width: none;
+    white-space: normal;
+    overflow: visible;
+}
+
 .footer-links {
     display: flex;
     gap: 28px;
@@ -1235,13 +1245,15 @@ a {
     border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    position: relative;
     color: var(--text-dim);
     font-size: 0.9rem;
-    gap: 16px;
 }
 
 .back-to-top {
+    position: absolute;
+    right: 0;
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -1394,6 +1406,10 @@ a {
         gap: 16px;
         text-align: center;
     }
+    
+    .back-to-top {
+        position: static;
+    }
 }
 
 /* Phones */
@@ -1512,7 +1528,7 @@ a {
     }
 
     .footer-links {
-        gap: 18px;
+        gap: 14px 18px;
     }
 }
 
